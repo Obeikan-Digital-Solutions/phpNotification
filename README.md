@@ -30,6 +30,23 @@ php artisan vendor:publish --tag="phpnotification-migrations"
 php artisan migrate
 ```
 
+to use notification in view you can use :
+
+```php
+ @include('phpnotification::notifications')
+
+```
+
+You can publish the view file with:
+
+```bash
+php artisan vendor:publish --tag="phpnotification-views"
+```
+then use
+```php
+ @include('vendor.phpnotification.notifications')
+
+```
 You can publish the config file with:
 
 ```bash

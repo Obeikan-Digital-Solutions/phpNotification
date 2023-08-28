@@ -4,4 +4,6 @@ namespace ObeikanDigitalSolutions\PhpNotification;
 
 class PhpNotification
 {
+
+
 }

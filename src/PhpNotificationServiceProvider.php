@@ -2,6 +2,7 @@
 
 namespace ObeikanDigitalSolutions\PhpNotification;
 
+use Illuminate\Support\Facades\Route;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use ObeikanDigitalSolutions\PhpNotification\Commands\PhpNotificationCommand;
@@ -18,8 +19,10 @@ class PhpNotificationServiceProvider extends PackageServiceProvider
         $package
             ->name('phpnotification')
             ->hasConfigFile()
+            ->hasRoute('notification')
             ->hasViews()
             ->hasMigration('create_phpnotification_table')
             ->hasCommand(PhpNotificationCommand::class);
     }
+
 }
