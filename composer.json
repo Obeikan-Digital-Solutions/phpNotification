@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "obeikan-digital-solutions/phpnotification",
+    "description": "This is my package phpnotification",
     "keywords": [
-        ":vendor_name",
+        "Obeikan-Digital-Solutions",
         "laravel",
-        ":package_slug"
+        "phpnotification"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/obeikan-digital-solutions/phpnotification",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Osama Al-mamari",
+            "email": "yemencoder@gmail.com",
             "role": "Developer"
         }
     ],
@@ -35,19 +35,19 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "ObeikanDigitalSolutions\\PhpNotification\\": "src/",
+            "ObeikanDigitalSolutions\\PhpNotification\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "ObeikanDigitalSolutions\\PhpNotification\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "clear": "@php vendor/bin/testbench package:purge-phpnotification --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": [
             "@composer run prepare",
@@ -72,10 +72,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "ObeikanDigitalSolutions\\PhpNotification\\PhpNotificationServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "PhpNotification": "ObeikanDigitalSolutions\\PhpNotification\\Facades\\PhpNotification"
             }
         }
     },

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace ObeikanDigitalSolutions\PhpNotification\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class PhpNotificationCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'phpnotification';
 
     public $description = 'My command';
 
