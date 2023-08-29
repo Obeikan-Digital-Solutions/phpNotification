@@ -72,12 +72,12 @@
                               $link='/sme/list';
                         @endphp
                         <li class="list-group-item px-2">
-                            <a href="{{$link}}" class="widget-content p-0">
+                            <div class="widget-content p-0">
                                 <div class="widget-content-wrapper">
                                     <!-- Notification Icon -->
                                     <div class="widget-content-left mr-3">
                                         <div class="icon-wrapper border-light rounded-circle justify-content-center">
-                                            <div class="icon-wrapper-bg bg-light"></div>
+                                            <a href="{{$link}}" class="icon-wrapper-bg bg-light"></a>
                                             @if ($check_task || $check_task_review)
                                                 <svg width="30" fill="#0071C1" viewBox="0 0 512 512">
                                                     <g transform="translate(0,512) scale(0.100000,-0.100000)"
@@ -264,7 +264,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </li>
                     @empty
                         <li class="p-2 text-center">{{ __('app.You haven\'t notifications') }}</li>
