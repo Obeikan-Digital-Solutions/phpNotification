@@ -4,7 +4,7 @@
             method: "POST",
             data: {
                 _token: "{{ csrf_token() }}",
-                id
+                id:id
             }
         });
     }
