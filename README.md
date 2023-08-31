@@ -16,30 +16,28 @@ You can install the package via composer:
 composer require obeikan-digital-solutions/phpnotification
 ```
 
-You can publish and run the migrations with:
+[//]: # (You can publish and run the migrations with:)
 
-```bash
-php artisan vendor:publish --tag="phpnotification-migrations"
-php artisan migrate
-```
+[//]: # ()
+[//]: # (```bash)
 
-to use notification in view you can use :
+[//]: # (php artisan vendor:publish --tag="phpnotification-migrations")
 
-```php
- @include('phpnotification::notifications')
+[//]: # (php artisan migrate)
 
-```
+[//]: # (```)
 
-You can publish the view file with:
+[//]: # (to use notification in view you can use :)
 
-```bash
-php artisan vendor:publish --tag="phpnotification-views"
-```
-then use
-```php
- @include('vendor.phpnotification.notifications')
+[//]: # ()
+[//]: # (```php)
 
-```
+[//]: # ( @include&#40;'phpnotification::notifications'&#41;)
+
+[//]: # ()
+[//]: # (```)
+
+
 You can publish the config file with:
 
 ```bash
@@ -50,8 +48,29 @@ This is the contents of the published config file:
 
 ```php
 return [
+   'allModule' => false,
+   'module' => "Your Module name ",//example Engagement
 ];
 ```
+
+
+## Usage
+
+```php
+// in includes/header.blade.php we add this to show notifications
+ @include('phpnotification::notifications')
+// in layout.blade.php we in script section after jquery
+@include('phpnotification::scripts')
+```
+
+## Generate new Notifiation class use this commend
+
+```bash
+php artisan phpnotification:generate YourClassName
+
+```
+
+
 
 Optionally, you can publish the views using
 
@@ -59,11 +78,10 @@ Optionally, you can publish the views using
 php artisan vendor:publish --tag="phpnotification-views"
 ```
 
-## Usage
-
+then use
 ```php
-// in includes/header.blade.php we add this to show notifications
- @include('phpnotification::notifications')
+ @include('vendor.phpnotification.notifications')
+
 ```
 
 ## Testing
