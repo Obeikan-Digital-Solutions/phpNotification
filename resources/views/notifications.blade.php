@@ -52,24 +52,28 @@
                             $check_coachee = $notification->type == 'App\Notifications\CoacheeNotification' ? true : false;
 
                             $link="javascript:void(0)";
-                            if($check_communication)
-                                $link='/communication';
-                            elseif ($check_suggestion)
-                                $link='/suggestion';
-                            elseif ($check_complatin)
-                                $link='/complaint';
-                            elseif ($check_activity)
-                                $link='/activity';
-//                             elseif ($check_task)
-//                                 $link='/suggestion';
-                            elseif ($check_task_review)
-                                $link='/task/review';
-                            elseif ($check_to_do_list)
-                                $link='/to-do-list';
-                            elseif ($check_coaching)
-                                $link='/sme/application-list';
-                            elseif ($check_coachee)
-                              $link='/sme/list';
+                               if($notification->link!="")
+                                $link=$notification->link;
+//                            if($check_communication)
+//                                $link='/communication';
+//                            elseif ($check_suggestion)
+//                                $link='/suggestion';
+//                            elseif ($check_complatin)
+//                                $link='/complaint';
+//                            elseif ($check_activity)
+//                                $link='/activity';
+////                             elseif ($check_task)
+////                                 $link='/suggestion';
+//                            elseif ($check_task_review)
+//                                $link='/task/review';
+//                            elseif ($check_to_do_list)
+//                                $link='/to-do-list';
+//                            elseif ($check_coaching)
+//                                $link='/sme/application-list';
+//                            elseif ($check_coachee)
+//                              $link='/sme/list';
+
+
                         @endphp
                         <li class="list-group-item px-2">
                             <div class="widget-content p-0">
@@ -78,6 +82,18 @@
                                     <div class="widget-content-left mr-3">
                                         <div class="icon-wrapper border-light rounded-circle justify-content-center">
                                             <a href="{{$link}}" class="icon-wrapper-bg bg-light"></a>
+                                            <svg width="30" fill="#0071C1" viewBox="0 0 57.84 43.01">
+                                                <path
+                                                    d="M3.44,33.85A1.84,1.84,0,1,0,.25,35.7l3.69,6.39a1.85,1.85,0,0,0,3.2-1.85Z"></path>
+                                                <path
+                                                    d="M48.39,28.08,44.27,21l-5.54-9.58L34.61,4.24a1.22,1.22,0,0,0-1.68-.42,1.28,1.28,0,0,0-.22.17l-28,27,5.54,9.58,7-2L20.35,42a1.89,1.89,0,0,0,1.84.56l9.29-2.64c.12-.07.3-.13.43-.19a1.77,1.77,0,0,0,.86-1.23L33.63,34l14.08-4a1.34,1.34,0,0,0,.75-1.74.8.8,0,0,0-.08-.16Zm-18,9.52-8.54,2.46-2-2.21L31,34.65Z"></path>
+                                                <rect x="47.8" y="8.49" width="8.49" height="2.97"
+                                                      transform="translate(1.79 26.79) rotate(-29.35)"></rect>
+                                                <rect x="51.87" y="14.25" width="2.97" height="8.49"
+                                                      transform="translate(21.15 64.88) rotate(-74.35)"></rect>
+                                                <rect x="41.14" y="3" width="8.48" height="2.97"
+                                                      transform="translate(28.82 46.97) rotate(-74.34)"></rect>
+                                            </svg>
                                             @if ($check_task || $check_task_review)
                                                 <svg width="30" fill="#0071C1" viewBox="0 0 512 512">
                                                     <g transform="translate(0,512) scale(0.100000,-0.100000)"
@@ -228,28 +244,28 @@
                                     <!-- Notification Content -->
                                     <div class="widget-content-left">
                                         <div class="widget-heading mb-1">
-                                            @isset($notification->data['subject'])
-                                                <span>{{ $notification->data['subject'] }}</span>
+                                            @isset($notification->notificationTitle)
+                                                <span>{{ $notification->notificationTitle }}</span>
                                             @endisset
                                             @isset($notification->data['activity'])
                                                 <span>{{ $notification->data['activity'] }}</span>
                                             @endisset
                                         </div>
                                         <div class="widget-subheading">
-                                            <div>{{ $notification->data['message'] ?? '' }}</div>
+                                            <div>{{ $notification->notificationDesc ?? '' }}</div>
                                             <div class="small">
-                                                @isset ($notification->data['date'])
-                                                    <em>{{ \Carbon\carbon::createFromDate($notification->data['date'])->diffForHumans() }}</em>
-                                                @endisset
-                                                @isset ($notification->data['from'])
-                                                    <em>-- {{ $notification->data['from'] }}</em>
-                                                @endisset
+
+                                                <em>{{ \Carbon\carbon::createFromDate($notification->createDate)->diffForHumans() }}</em>
+
+
+                                                <em>-- {{ $notification->user->name }}</em>
+
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Notification Action Default -->
                                     <div class="widget-content-right d-flex flex-column align-items-center">
-                                        @if (! $notification->read_at)
+                                        @if (! $notification->isRead)
                                             <button type="button"
                                                     class="btn mb-2 badge badge-dot badge-primary mark-as-read"
                                                     data-id="{{ $notification->id }}" data-toggle="tooltip"

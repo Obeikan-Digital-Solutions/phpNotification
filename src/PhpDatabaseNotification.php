@@ -1,6 +1,7 @@
 <?php
 namespace ObeikanDigitalSolutions\PhpNotification;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +21,7 @@ class PhpDatabaseNotification extends Model
      */
     public $incrementing = true;
 
+    public $timestamps=false;
     /**
      * The table associated with the model.
      *
@@ -64,6 +66,10 @@ class PhpDatabaseNotification extends Model
         if (is_null($this->read_at)) {
             $this->forceFill(['isRead' => 1])->save();
         }
+    }
+public function user()
+    {
+        return $this->belongsTo(User::class,'Sender','t_idno');
     }
 
     /**
