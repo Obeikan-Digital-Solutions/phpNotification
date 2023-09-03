@@ -2,6 +2,8 @@
 
 namespace ObeikanDigitalSolutions\PhpNotification;
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait HasDatabaseNotifications
 {
     /**
@@ -12,6 +14,13 @@ trait HasDatabaseNotifications
     public function notifications()
     {
         return $this->hasMany(PhpDatabaseNotification::class, 'toUser', 't_idno')
+            ->where(function($query) {
+                if (config('phpnotification.allModule')) {
+                    return $query;
+                }
+                return $query->where('module', config('phpnotification.module'));
+            })
+
             ->orderBy('createDate', 'desc');
     }
 
@@ -34,4 +43,7 @@ trait HasDatabaseNotifications
     {
         return $this->notifications()->unread();
     }
+
+ 
+
 }
