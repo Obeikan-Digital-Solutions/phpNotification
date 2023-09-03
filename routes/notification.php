@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use  ObeikanDigitalSolutions\PhpNotification\NotifictionsControlle;
 
+Route::group(['middleware' => ['web', 'auth']], function(){
 
-Route::post('/mark-as-read', [NotifictionsControlle::class, 'markNotification'])->name('mark.notification');
+    Route::post('/mark-as-read', [NotifictionsControlle::class, 'markNotification'])->name('mark.notification');
+});

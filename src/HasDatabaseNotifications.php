@@ -43,6 +43,10 @@ trait HasDatabaseNotifications
     {
         return $this->notifications()->unread();
     }
-    
+
+    public function scopeOfModule($q)
+    {
+
+    }
 
 }
