@@ -43,7 +43,6 @@ trait HasDatabaseNotifications
     {
         return $this->notifications()->unread();
     }
-
- 
+    
 
 }

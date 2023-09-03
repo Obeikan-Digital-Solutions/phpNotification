@@ -53,7 +53,12 @@
 
                             $link="javascript:void(0)";
                                if($notification->link!="")
-                                $link=$notification->link;
+                             {
+                                 $link='';
+                                 if( $notification->nawrasmodule)
+                                 $link= $notification->nawrasmodule?->mainPage;
+                                 $link.=$notification->link;
+                             }
 //                            if($check_communication)
 //                                $link='/communication';
 //                            elseif ($check_suggestion)
@@ -245,6 +250,7 @@
                                     <div class="widget-content-left">
                                         <div class="widget-heading mb-1">
                                             @isset($notification->notificationTitle)
+
                                                 <span>{{ $notification->notificationTitle }}</span>
                                             @endisset
                                             @isset($notification->data['activity'])

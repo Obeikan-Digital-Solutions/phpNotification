@@ -1,4 +1,5 @@
 <?php
+
 namespace ObeikanDigitalSolutions\PhpNotification;
 
 use App\Models\User;
@@ -21,7 +22,7 @@ class PhpDatabaseNotification extends Model
      */
     public $incrementing = true;
 
-    public $timestamps=false;
+    public $timestamps = false;
     /**
      * The table associated with the model.
      *
@@ -67,9 +68,15 @@ class PhpDatabaseNotification extends Model
             $this->forceFill(['isRead' => 1])->save();
         }
     }
-public function user()
+
+    public function user()
     {
-        return $this->belongsTo(User::class,'Sender','t_idno');
+        return $this->belongsTo(User::class, 'Sender', 't_idno');
+    }
+
+    public function nawrasmodule(){
+
+        return $this->hasOne(Nawrasmodules::class,'id','module');
     }
 
     /**
@@ -79,7 +86,7 @@ public function user()
      */
     public function markAsUnread()
     {
-        if (! is_null($this->read_at)) {
+        if (!is_null($this->read_at)) {
             $this->forceFill(['isRead' => 0])->save();
         }
     }
@@ -91,7 +98,7 @@ public function user()
      */
     public function read()
     {
-        return $this->isRead ;
+        return $this->isRead;
     }
 
     /**
@@ -101,35 +108,35 @@ public function user()
      */
     public function unread()
     {
-        return $this->isRead ==0;
+        return $this->isRead == 0;
     }
 
     /**
      * Scope a query to only include read notifications.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeRead(Builder $query)
     {
-        return $query->where('isRead',1);
+        return $query->where('isRead', 1);
     }
 
     /**
      * Scope a query to only include unread notifications.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeUnread(Builder $query)
     {
-        return $query->where('isRead',0);
+        return $query->where('isRead', 0);
     }
 
     /**
      * Create a new database notification collection instance.
      *
-     * @param  array  $models
+     * @param array $models
      * @return \Illuminate\Notifications\DatabaseNotificationCollection
      */
     public function newCollection(array $models = [])
