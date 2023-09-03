@@ -264,7 +264,7 @@
                                                 <em>{{ \Carbon\carbon::createFromDate($notification->createDate)->diffForHumans() }}</em>
 
 
-                                                <em>-- {{ $notification->user->name }}</em>
+                                                <em>-- {{ $notification->user?->name }}</em>
 
                                             </div>
                                         </div>
