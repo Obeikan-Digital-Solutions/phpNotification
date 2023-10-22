@@ -57,6 +57,8 @@ return [
 ## Usage
 
 ```php
+//in /user modal use trait
+ use  CustomNotifiable;
 // in includes/header.blade.php we add this to show notifications
  @include('phpnotification::notifications')
 // in layout.blade.php we in script section after jquery
