@@ -42,5 +42,5 @@
                 $(this).remove();
             });
         })
-    }
+    });
 </script>

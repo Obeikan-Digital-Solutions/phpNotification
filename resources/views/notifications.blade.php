@@ -12,12 +12,11 @@
     </button>
 
     <div tabindex="-1" role="menu" aria-hidden="true"
-         class="dropdown-menu-lg dropdown-menu dropdown-menu-right">
+        class="dropdown-menu-lg dropdown-menu dropdown-menu-right">
         <div class="dropdown-menu-header border-bottom border-light">
             <div class="dropdown-menu-header-inner py-2">
                 <div class="menu-header-content btn-pane-right text-dark">
                     <h5 class="menu-header-title">{{ __('app.Notifications') }}</h5>
-
                     <div class="menu-header-btn-pane">
                         <button type="button" id="mark-all" aria-haspopup="true"
                                 data-toggle="{{ count(auth()->user()->unreadNotifications) ? 'tooltip' : '' }}"
@@ -25,16 +24,16 @@
                                 title="{{ __('app.Mark all as read') }}" aria-expanded="false"
                                 class="p-0 btn dd-chart-btn"
                             {{ count(auth()->user()->unreadNotifications) ? '' : 'disabled' }}>
-                                            <span class="icon-wrapper icon-wrapper-alt rounded-circle">
-                                                <span class="icon-wrapper-bg bg-light"></span>
-                                                <i class="icon text-dark pe-7s-mail{{ count(auth()->user()->unreadNotifications) ? '-open' : '' }}"></i>
-                                            </span>
+                            <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                <span class="icon-wrapper-bg bg-light"></span>
+                                <i class="icon text-dark pe-7s-mail{{ count(auth()->user()->unreadNotifications) ? '-open' : '' }}"></i>
+                            </span>
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
+
         <div class="scroll-area-md">
             <div class="scrollbar-container">
                 <!-- Notifications List -->
@@ -43,7 +42,7 @@
                         @php
                             $check_communication = $notification->type == 'App\Notifications\CommunicationNotification' ? true : false;
                             $check_suggestion = $notification->type == 'App\Notifications\SuggestionNotification' ? true : false;
-                            $check_complatin = $notification->type == 'App\Notifications\ComplaintNotification' ? true : false;
+                            $check_complaint = $notification->type == 'App\Notifications\ComplaintNotification' ? true : false;
                             $check_activity = $notification->type == 'App\Notifications\ActivityNotification' ? true : false;
                             $check_task = $notification->type == 'App\Notifications\TaskNotification' ? true : false;
                             $check_task_review = $notification->type == 'App\Notifications\TaskReviewNotification' ? true : false;
@@ -52,33 +51,31 @@
                             $check_coachee = $notification->type == 'App\Notifications\CoacheeNotification' ? true : false;
 
                             $link="javascript:void(0)";
-                               if($notification->link!="")
-                             {
-                                 $link='';
-                                 if( $notification->nawrasmodule)
-                                 $link= $notification->nawrasmodule?->mainPage;
-                                 $link.=$notification->link;
-                             }
-//                            if($check_communication)
-//                                $link='/communication';
-//                            elseif ($check_suggestion)
-//                                $link='/suggestion';
-//                            elseif ($check_complatin)
-//                                $link='/complaint';
-//                            elseif ($check_activity)
-//                                $link='/activity';
-////                             elseif ($check_task)
-////                                 $link='/suggestion';
-//                            elseif ($check_task_review)
-//                                $link='/task/review';
-//                            elseif ($check_to_do_list)
-//                                $link='/to-do-list';
-//                            elseif ($check_coaching)
-//                                $link='/sme/application-list';
-//                            elseif ($check_coachee)
-//                              $link='/sme/list';
-
-
+                            if($notification->link!="")
+                            {
+                                $link='';
+                                if( $notification->nawrasmodule)
+                                $link= $notification->nawrasmodule?->mainPage;
+                                $link.=$notification->link;
+                            }
+                            // if($check_communication)
+                            // $link='/communication';
+                            // elseif ($check_suggestion)
+                            // $link='/suggestion';
+                            // elseif ($check_complaint)
+                            // $link='/complaint';
+                            // elseif ($check_activity)
+                            // $link='/activity';
+                            //// elseif ($check_task)
+                            //// $link='/suggestion';
+                            // elseif ($check_task_review)
+                            // $link='/task/review';
+                            // elseif ($check_to_do_list)
+                            // $link='/to-do-list';
+                            // elseif ($check_coaching)
+                            // $link='/sme/application-list';
+                            // elseif ($check_coachee)
+                            // $link='/sme/list';
                         @endphp
                         <li class="list-group-item px-2">
                             <div class="widget-content p-0">
@@ -229,7 +226,7 @@
                                             @if ($check_suggestion)
                                                 <i class="fas fa-lightbulb icon-gradient bg-happy-itmeo"></i>
                                             @endif
-                                            @if ($check_complatin)
+                                            @if ($check_complaint)
                                                 <i class="fas fa-exclamation icon-gradient bg-happy-itmeo"></i>
                                             @endif
                                             @if ($check_coaching || $check_coachee)
@@ -250,7 +247,6 @@
                                     <div class="widget-content-left">
                                         <div class="widget-heading mb-1">
                                             @isset($notification->notificationTitle)
-
                                                 <span>{{ $notification->notificationTitle }}</span>
                                             @endisset
                                             @isset($notification->data['activity'])
@@ -258,14 +254,10 @@
                                             @endisset
                                         </div>
                                         <div class="widget-subheading">
-                                            <div>{{ $notification->notificationDesc ?? '' }}</div>
+                                            <div>{!! $notification->notificationDesc ?? '' !!}</div>
                                             <div class="small">
-
                                                 <em>{{ \Carbon\carbon::createFromDate($notification->createDate)->diffForHumans() }}</em>
-
-
                                                 <em>-- {{ $notification->user?->name }}</em>
-
                                             </div>
                                         </div>
                                     </div>
@@ -279,10 +271,10 @@
                                             >{{ __('app.Make as read') }}</button>
                                         @endif
                                         <button type="button" class="p-0 btn dd-chart-btn remove-notification">
-                                                        <span class="icon-wrapper icon-wrapper-alt rounded-circle">
-                                                            <span class="icon-wrapper-bg bg-light"></span>
-                                                            <i class="icon text-primary pe-7s-close"></i>
-                                                        </span>
+                                            <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                                <span class="icon-wrapper-bg bg-light"></span>
+                                                <i class="icon text-primary pe-7s-close"></i>
+                                            </span>
                                         </button>
                                     </div>
                                 </div>
@@ -296,7 +288,7 @@
         </div>
         <div class="px-3 py-2">
             <a href="javascript:void(0)"
-               class="btn-block border-0 btn btn-light btn-sm">{{ __('app.Show all notifications') }}</a>
+                class="btn-block border-0 btn btn-light btn-sm">{{ __('app.Show all notifications') }}</a>
         </div>
     </div>
 </div>
