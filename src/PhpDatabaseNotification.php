@@ -13,7 +13,7 @@ class PhpDatabaseNotification extends Model
      *
      * @var string
      */
-//    protected $keyType = 'string';
+    //    protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -23,6 +23,7 @@ class PhpDatabaseNotification extends Model
     public $incrementing = true;
 
     public $timestamps = false;
+
     /**
      * The table associated with the model.
      *
@@ -43,8 +44,8 @@ class PhpDatabaseNotification extends Model
      * @var array
      */
     protected $casts = [
-//        'data' => 'array',
-//        'read_at' => 'datetime',
+        //        'data' => 'array',
+        //        'read_at' => 'datetime',
     ];
 
     /**
@@ -74,9 +75,10 @@ class PhpDatabaseNotification extends Model
         return $this->belongsTo(User::class, 'Sender', 't_idno');
     }
 
-    public function nawrasmodule(){
+    public function nawrasmodule()
+    {
 
-        return $this->hasOne(Nawrasmodules::class,'id','module');
+        return $this->hasOne(Nawrasmodules::class, 'id', 'module');
     }
 
     /**
@@ -86,7 +88,7 @@ class PhpDatabaseNotification extends Model
      */
     public function markAsUnread()
     {
-        if (!is_null($this->read_at)) {
+        if (! is_null($this->read_at)) {
             $this->forceFill(['isRead' => 0])->save();
         }
     }
@@ -114,7 +116,6 @@ class PhpDatabaseNotification extends Model
     /**
      * Scope a query to only include read notifications.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeRead(Builder $query)
@@ -125,7 +126,6 @@ class PhpDatabaseNotification extends Model
     /**
      * Scope a query to only include unread notifications.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeUnread(Builder $query)
@@ -136,7 +136,6 @@ class PhpDatabaseNotification extends Model
     /**
      * Create a new database notification collection instance.
      *
-     * @param array $models
      * @return \Illuminate\Notifications\DatabaseNotificationCollection
      */
     public function newCollection(array $models = [])

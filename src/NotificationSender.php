@@ -84,10 +84,9 @@ class NotificationSender
      *
      * @param  \Illuminate\Support\Collection|array|mixed  $notifiables
      * @param  mixed  $notification
-     * @param  array|null  $channels
      * @return void
      */
-    public function sendNow($notifiables, $notification, array $channels = null)
+    public function sendNow($notifiables, $notification, ?array $channels = null)
     {
         $notifiables = $this->formatNotifiables($notifiables);
 
@@ -205,18 +204,18 @@ class NotificationSender
 
                 $this->bus->dispatch(
                     (new SendQueuedNotifications($notifiable, $notification, [$channel]))
-                            ->onConnection($notification->connection)
-                            ->onQueue($queue)
-                            ->delay(is_array($notification->delay) ?
-                                    ($notification->delay[$channel] ?? null)
-                                    : $notification->delay
+                        ->onConnection($notification->connection)
+                        ->onQueue($queue)
+                        ->delay(is_array($notification->delay) ?
+                                ($notification->delay[$channel] ?? null)
+                                : $notification->delay
+                        )
+                        ->through(
+                            array_merge(
+                                method_exists($notification, 'middleware') ? $notification->middleware() : [],
+                                $notification->middleware ?? []
                             )
-                            ->through(
-                                array_merge(
-                                    method_exists($notification, 'middleware') ? $notification->middleware() : [],
-                                    $notification->middleware ?? []
-                                )
-                            )
+                        )
                 );
             }
         }

@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 class NotifictionsControlle extends Controller
 {
-
-
     public function markNotification(Request $request)
     {
         auth()->user()
@@ -20,5 +18,4 @@ class NotifictionsControlle extends Controller
 
         return response()->noContent();
     }
-
 }

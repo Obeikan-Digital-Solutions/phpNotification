@@ -3,8 +3,8 @@
 namespace ObeikanDigitalSolutions\PhpNotification\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use ObeikanDigitalSolutions\PhpNotification\PhpNotificationServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

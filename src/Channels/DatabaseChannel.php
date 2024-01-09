@@ -11,8 +11,8 @@ class DatabaseChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function send($notifiable, PhpNotification $notification)
@@ -25,8 +25,8 @@ class DatabaseChannel
     /**
      * Build an array payload for the DatabaseNotification Model.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
      * @return array
      */
     protected function buildPayload($notifiable, PhpNotification $notification)
@@ -52,32 +52,32 @@ class DatabaseChannel
         //      ,[importanceLevel]
         //      ,[isSensitive]
         return [
-            "compId" => auth()->user()->t_comp,
-            "isGroup" => '0',
-            "groupType" => '',
-            "groupMembers" => "",
-            "sendToEmail" => "",
-            "notificationType" => "0",
-            "notificationTitle" => $this->getData($notifiable, $notification)["subject"],
-            "notificationDesc" => $this->getData($notifiable, $notification)["message"],
-            "isRead" => "0",
-            "createDate" => now(),
-            "modifiDate" => now(),
-            "expDate" => now()->addMonth(1),
-            "link" => array_key_exists('link', $this->getData($notifiable, $notification)) ? $this->getData($notifiable, $notification)["link"] : "",
-            "module" => config('phpnotification.module', ''),
-            "deliveryStatus" => "1",
-            "importanceLevel" => "",
-            "isSensitive" => "",
-            "Sender" => auth()->user()->t_idno
+            'compId' => auth()->user()->t_comp,
+            'isGroup' => '0',
+            'groupType' => '',
+            'groupMembers' => '',
+            'sendToEmail' => '',
+            'notificationType' => '0',
+            'notificationTitle' => $this->getData($notifiable, $notification)['subject'],
+            'notificationDesc' => $this->getData($notifiable, $notification)['message'],
+            'isRead' => '0',
+            'createDate' => now(),
+            'modifiDate' => now(),
+            'expDate' => now()->addMonth(1),
+            'link' => array_key_exists('link', $this->getData($notifiable, $notification)) ? $this->getData($notifiable, $notification)['link'] : '',
+            'module' => config('phpnotification.module', ''),
+            'deliveryStatus' => '1',
+            'importanceLevel' => '',
+            'isSensitive' => '',
+            'Sender' => auth()->user()->t_idno,
         ];
     }
 
     /**
      * Get the data for the notification.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
      * @return array
      *
      * @throws \RuntimeException

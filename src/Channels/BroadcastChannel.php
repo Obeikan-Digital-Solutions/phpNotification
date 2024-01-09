@@ -20,7 +20,6 @@ class BroadcastChannel
     /**
      * Create a new broadcast channel.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
      * @return void
      */
     public function __construct(Dispatcher $events)
@@ -32,7 +31,6 @@ class BroadcastChannel
      * Send the given notification.
      *
      * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
      * @return array|null
      */
     public function send($notifiable, Notification $notification)
@@ -45,7 +43,7 @@ class BroadcastChannel
 
         if ($message instanceof BroadcastMessage) {
             $event->onConnection($message->connection)
-                  ->onQueue($message->queue);
+                ->onQueue($message->queue);
         }
 
         return $this->events->dispatch($event);
@@ -55,7 +53,6 @@ class BroadcastChannel
      * Get the data for the notification.
      *
      * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
      * @return mixed
      *
      * @throws \RuntimeException

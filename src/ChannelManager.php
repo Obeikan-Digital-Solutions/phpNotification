@@ -2,14 +2,13 @@
 
 namespace ObeikanDigitalSolutions\PhpNotification;
 
-
 use Illuminate\Contracts\Bus\Dispatcher as Bus;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Notifications\Dispatcher as DispatcherContract;
 use Illuminate\Contracts\Notifications\Factory as FactoryContract;
+use Illuminate\Notifications\NotificationSender;
 use Illuminate\Support\Manager;
 use InvalidArgumentException;
-use Illuminate\Notifications\NotificationSender;
 
 class ChannelManager extends Manager implements DispatcherContract, FactoryContract
 {
@@ -46,10 +45,9 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
      *
      * @param  \Illuminate\Support\Collection|array|mixed  $notifiables
      * @param  mixed  $notification
-     * @param  array|null  $channels
      * @return void
      */
-    public function sendNow($notifiables, $notification, array $channels = null)
+    public function sendNow($notifiables, $notification, ?array $channels = null)
     {
         (new NotificationSender(
             $this, $this->container->make(Bus::class), $this->container->make(Dispatcher::class), $this->locale)

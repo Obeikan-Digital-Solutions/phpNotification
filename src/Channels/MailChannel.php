@@ -29,8 +29,6 @@ class MailChannel
     /**
      * Create a new mail channel instance.
      *
-     * @param  \Illuminate\Contracts\Mail\Factory  $mailer
-     * @param  \Illuminate\Mail\Markdown  $markdown
      * @return void
      */
     public function __construct(MailFactory $mailer, Markdown $markdown)
@@ -43,7 +41,6 @@ class MailChannel
      * Send the given notification.
      *
      * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
      * @return void
      */
     public function send($notifiable, Notification $notification)

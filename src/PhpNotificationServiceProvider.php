@@ -4,11 +4,9 @@ namespace ObeikanDigitalSolutions\PhpNotification;
 
 use Illuminate\Contracts\Notifications\Dispatcher as DispatcherContract;
 use Illuminate\Contracts\Notifications\Factory as FactoryContract;
-use ObeikanDigitalSolutions\PhpNotification\ChannelManager;
-use Illuminate\Support\Facades\Route;
+use ObeikanDigitalSolutions\PhpNotification\Commands\PhpNotificationCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use ObeikanDigitalSolutions\PhpNotification\Commands\PhpNotificationCommand;
 
 class PhpNotificationServiceProvider extends PackageServiceProvider
 {
@@ -28,7 +26,6 @@ class PhpNotificationServiceProvider extends PackageServiceProvider
             ->hasCommand(PhpNotificationCommand::class);
     }
 
-
     public function register()
     {
         parent::register();
@@ -45,5 +42,4 @@ class PhpNotificationServiceProvider extends PackageServiceProvider
             ChannelManager::class, FactoryContract::class
         );
     }
-
 }

@@ -28,7 +28,7 @@ return [
     Compliance
   Teamwork
      */
-    'module' => "Your Module name ",//example Engagement
+    'module' => 'Your Module name ', //example Engagement
 
     /* if you show all notification of all modules make is true */
     'allModule' => false,

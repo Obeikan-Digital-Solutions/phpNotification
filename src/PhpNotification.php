@@ -45,4 +45,3 @@ class PhpNotification
         return $this;
     }
 }
-
